@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troca Tudo</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Coluna esquerda: Avatar e informações do usuário -->
+        <div class="coluna-esquerda">
+            <img id="user-avatar" src="/assets/avatars/default-avatar.jpg" alt="Avatar Padrão">
+            <h3 id="user-name">Usuário não logado</h3>
+            
+            <!-- Bloco de Curtidas e Descurtidas com imagens -->
+            <div class="interacoes">
+                <div class="curtidas-bloco">
+                    <span id="user-likes">0</span>
+                    <img src="/assets/images/curtidas.jpg" alt="Curtir" class="icon-curtida">
+                </div>
+                <div class="descurtidas-bloco">
+                    <span id="user-dislikes">0</span>
+                    <img src="/assets/images/descurtidas.jpg" alt="Descurtir" class="icon-descurtida">
+                </div>
+            </div>
+        
+            <button id="login-btn" onclick="mostrarModal()">Entrar</button>
+            <button id="logout-btn" style="display:none;" onclick="fazerLogout()">Sair</button>
+        </div>
+    
+        <!-- Coluna direita: Lista de produtos -->
+        <div class="coluna-direita">
+            <div id="produtos-lista">
+                <!-- Exemplo de um produto com comentários -->
+                <div class="produto" id="produto-1">
+                    <h3>Nome do Produto 1</h3>
+                    <img src="/assets/images/produto1.jpg" alt="Produto 1">
+                    
+                    <!-- Bloco de Curtidas, Descurtidas e Comentários -->
+                    <div class="interacoes-produto">
+                        <div class="curtidas-descurtidas">
+                            <p>Curtidas: <span class="curtidas">10</span> | Descurtidas: <span class="descurtidas">2</span></p>
+                        </div>
+                        <div class="comentarios">
+                            <p>Último Comentário: Ótimo produto! - São Paulo, SP</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de login -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2>Login</h2>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="senha" placeholder="Senha" required>
+            <button id="login-submit" onclick="fazerLogin()">Entrar</button>
+            <p id="login-error" style="color: red;"></p>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="footer-container">
+            <!-- Nome da empresa à esquerda -->
+            <div class="footer-left">
+                <p class="company-name">Troca Tudo</p>
+            </div>
+
+            <!-- Ícones de redes sociais no centro -->
+            <div class="footer-center">
+                <a href="#"><img src="/assets/icons/facebook.svg" alt="Facebook"></a>
+                <a href="#"><img src="/assets/icons/instagram.svg" alt="Instagram"></a>
+                <a href="#"><img src="/assets/icons/tiktok.svg" alt="TikTok"></a>
+                <a href="#"><img src="/assets/icons/youtube.svg" alt="YouTube"></a>
+                <a href="#"><img src="/assets/icons/x.svg" alt="X"></a>
+            </div>
+
+            <!-- Copyright à direita -->
+            <div class="footer-right">
+                <p>&copy; 2024 By Hilton Elias.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/app.js"></script>
+</body>
+</html>
