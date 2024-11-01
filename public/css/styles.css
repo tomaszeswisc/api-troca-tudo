@@ -25,11 +25,11 @@ body {
 
 /* O contêiner que contém as colunas */
 .container {
-    display: flex;              /* Ativa o Flexbox */
+    display: flex;              
     justify-content: space-between;
-    width: 100%;                /* O contêiner ocupa 100% da largura */
+    width: 100%;                
     padding: 20px;
-    box-sizing: border-box;      /* Inclui padding e bordas no cálculo da largura */
+    box-sizing: border-box;      
 }
 
 /* A coluna da esquerda, onde está o avatar */
@@ -240,13 +240,45 @@ button.editar, button.excluir {
     position: relative;
 }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
+/* Estilos para o conteúdo do modal de login */
+.login-modal {
+    max-width: 500px;           /* Limite de largura */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
 }
+
+.login-campos {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.login-campos input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* Botão de login */
+.login-botoes button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    background-color: #007BFF;
+    font-size: 1em;
+}
+
+.login-botoes button:hover {
+    background-color: #0056b3;
+}
+
 
 /* Botão de fechar o modal */
 .close {
@@ -301,4 +333,52 @@ button.editar, button.excluir {
 .footer-right {
     font-size: 1em;
     text-align: right;
+}
+
+/*--------------------------------------------------------------------------*/
+
+
+/* Estilos para o conteúdo do modal de comentário */
+.comentario-modal {
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.comentario-localizacao {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.comentario-localizacao input,
+#comentario-texto {
+    flex: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+#comentario-texto {
+    width: 100%;
+    resize: vertical;
+}
+
+.comentario-botoes button {
+    width: 48%; /* Botões lado a lado ocupando metade do espaço cada */
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    background-color: #007BFF;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.comentario-botoes button:hover {
+    background-color: #0056b3;
 }

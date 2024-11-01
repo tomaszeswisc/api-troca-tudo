@@ -52,17 +52,57 @@
         </div>
     </div>
 
-    <!-- Modal de login -->
+    <!-- Modal de Login -->
     <div id="login-modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content login-modal">
             <span class="close" onclick="fecharModal()">&times;</span>
             <h2>Login</h2>
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="senha" placeholder="Senha" required>
-            <button id="login-submit" onclick="fazerLogin()">Entrar</button>
+
+            <!-- Campos de email e senha -->
+            <div class="login-campos">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="senha" placeholder="Senha" required>
+            </div>
+
+            <!-- Botão de login -->
+            <div class="login-botoes">
+                <button id="login-submit" onclick="fazerLogin()">Entrar</button>
+            </div>
+
+            <!-- Mensagem de erro -->
             <p id="login-error" style="color: red;"></p>
         </div>
     </div>
+
+   
+
+    <!-- Modal de Comentário -->
+    <div id="comentario-modal" class="modal">
+        <div class="modal-content comentario-modal">
+            <span class="close" onclick="fecharComentarioModal()">&times;</span>
+            <h2>Comentário</h2>
+            
+            <!-- Caixa de texto para comentário -->
+            <textarea id="comentario-texto" rows="4" placeholder="Digite seu comentário"></textarea>
+            
+            <!-- Inputs de cidade e estado alinhados lado a lado -->
+            <div class="comentario-localizacao">
+                <input type="text" id="cidade" placeholder="Cidade">
+                <input type="text" id="estado" placeholder="Estado">
+            </div>
+            
+            <!-- Botões de ação -->
+            <div class="comentario-botoes">
+                <button onclick="adicionarOuEditarComentario()">Salvar</button>
+                <button onclick="excluirComentario()">Excluir</button>
+            </div>
+
+            <!-- Mensagem de erro ou status -->
+            <p id="comentario-mensagem" style="color: red;"></p>
+        </div>
+    </div>
+
+
 
 
     <footer>
