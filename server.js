@@ -133,6 +133,7 @@ app.post('/produtos/:produtoId/interagir', (req, res) => {
     });
 });
 
+
 // Função para incrementar ou decrementar curtidas/descurtidas no produto
 function atualizarContagem(produtoId, tipoInteracao, operacao) {
     const campo = tipoInteracao === 'curtida' ? 'curtidas' : 'descurtidas';
@@ -149,6 +150,8 @@ function atualizarContagem(produtoId, tipoInteracao, operacao) {
         }
     });
 }
+
+
 
 // Endpoint para adicionar um comentário
 app.post('/produtos/:produtoId/comentar', (req, res) => {

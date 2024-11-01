@@ -63,6 +63,9 @@ function fazerLogout() {
     // Redefinindo as informações do usuário após o logout
     document.getElementById('user-name').innerText = "Usuário não logado";
     document.getElementById('user-avatar').src = "/assets/avatars/default-avatar.jpg";  // Voltando para o avatar padrão
+
+    //inserir os likes padrão
+    
     document.getElementById('login-btn').style.display = 'block';
     document.getElementById('logout-btn').style.display = 'none';
 }
@@ -167,6 +170,7 @@ function fecharComentarioModal() {
     document.getElementById('comentario-modal').style.display = 'none';
 }
 
+//------------------------Modificar para editar só esta adicionando--------------------------------------------
 // Função para adicionar ou editar um comentário
 function adicionarOuEditarComentario() {
     const texto = document.getElementById('comentario-texto').value;
@@ -196,6 +200,9 @@ function adicionarOuEditarComentario() {
     })
     .catch(error => console.error('Erro ao adicionar/editar comentário:', error));
 }
+
+//-------------------------Acrescentar input para excluir comentario-----------------------------------------------
+
 
 // Função para excluir um comentário
 function excluirComentario() {
@@ -275,6 +282,7 @@ function atualizarContadorLocal(produtoId, tipoInteracao, mensagem) {
     }
 }
 
+//-------------------------Revisar a função e evitar o decremento em ambos---------------------------------
 
 // Função para atualizar o contador de curtidas/descurtidas no perfil do usuário
 function atualizarContadorUsuario(tipoInteracao, mensagem) {
