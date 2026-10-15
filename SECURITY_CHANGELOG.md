@@ -85,3 +85,10 @@ Consulte o histórico de commits em https://github.com/tomaszeswisc/api-troca-tu
 - Recuperação: reverter os commits indicados, caso seja necessário, mantendo o restante das alterações.
 - `package-lock.json` **permanece desatualizado**: executar `npm install` com acesso ao registro npm, revisar o diff e registrar a nova versão antes de publicar; não inventar hashes ou entradas de pacotes.
 - Testes de conexão MySQL e autenticação ainda não foram executados.
+
+## 2026-10-15 — validação de dependências no CI
+
+- Workflow `.github/workflows/check-syntax.yml`: além da verificação de sintaxe, executar `npm install --ignore-scripts --no-audit --no-fund` e verificar a disponibilidade de `bcryptjs` e `dotenv` em ambiente isolado de CI, sem acesso a banco de dados.
+- A alteração não executa login ou MySQL; não armazena segredos.
+- `package-lock.json` permanece desatualizado e deve ser regenerado localmente e revisado antes de publicar.
+- Código da aplicação e rotas não são alterados; versão anterior do workflow pode ser recuperada pelo histórico Git.
