@@ -66,3 +66,12 @@ Consulte o histórico de commits em https://github.com/tomaszeswisc/api-troca-tu
 - **Impacto esperado:** usuários antigos com senha em texto simples não poderão entrar até que a coluna `usuarios.senha` receba hashes bcrypt. Não copiar senhas antigas para repositórios ou documentação.
 - Recuperação da versão de código atual: blob `e6c09bdc764bb06e374e160053c98678238a1b71` de `server.js` (não restaurar autenticação insegura em sistemas expostos).
 - Testes com banco real ainda não realizados.
+
+## 2026-10-15 — mudança efetivada do login
+
+- `server.js`: removida a comparação SQL `WHERE email = ? AND senha = ?`; substituída por consulta pelo e-mail e comparação com `bcrypt.compare`.
+- Antes: blob `e6c09bdc764bb06e374e160053c98678238a1b71`; commit da alteração: `88a6e47bbae44f9ff2a1bc011d3773a2fb1c54b9`.
+- `package.json`: adicionada dependência `bcryptjs`, commit `c3fb81fbaf5c7920021475de786984a64e878a4d`.
+- Rotas não relacionadas e interface HTTP do login preservadas; usuários antigos exigem redefinição das senhas para hashes bcrypt.
+- `package-lock.json` ainda não atualizado; executar `npm install` localmente.
+- Testes com MySQL não executados. Reversão técnica consultando os commits anteriores, sem restaurar práticas inseguras.
