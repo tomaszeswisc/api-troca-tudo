@@ -1,4 +1,4 @@
-name: Verificação de sintaxe Node.js
+name: Verificação Node.js
 
 on:
   push:
@@ -6,12 +6,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  sintaxe:
+  verificacao:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Instalar dependências para validação
+        run: npm install --ignore-scripts --no-audit --no-fund
       - name: Verificar sintaxe do servidor
         run: node --check server.js
+      - name: Verificar dependências da autenticação
+        run: node -e "require('bcryptjs'); require('dotenv'); console.log('Dependências disponíveis')"
