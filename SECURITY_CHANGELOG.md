@@ -39,3 +39,9 @@ Consulte o histórico de commits em https://github.com/tomaszeswisc/api-troca-tu
 - **Recuperação:** código antigo em https://github.com/tomaszeswisc/api-troca-tudo/blob/24770b3ea0b44f080496b94443ac3d95d947603b/server.js ; não reutilizar a senha antiga.
 - **Ação local necessária:** configurar uma senha nova no MySQL e criar `.env` privado antes de executar.
 - **Até aqui:** plano registrado; execução de código ainda pendente.
+
+### Configuração preventiva publicada
+
+- `.env.example` criado: https://github.com/tomaszeswisc/api-troca-tudo/commit/92ca444e77d5a749159d2224a705e1be1e58f4b5
+- `.gitignore` atualizado: https://github.com/tomaszeswisc/api-troca-tudo/commit/077bac0d4df3f3756380a0363a5905cb923700ec
+- Nenhuma função, rota ou senha original removida nesses dois commits. `server.js` continua inalterado.
