@@ -75,3 +75,13 @@ Consulte o histórico de commits em https://github.com/tomaszeswisc/api-troca-tu
 - Rotas não relacionadas e interface HTTP do login preservadas; usuários antigos exigem redefinição das senhas para hashes bcrypt.
 - `package-lock.json` ainda não atualizado; executar `npm install` localmente.
 - Testes com MySQL não executados. Reversão técnica consultando os commits anteriores, sem restaurar práticas inseguras.
+
+## 2026-10-15 — checagem de sintaxe
+
+- `package.json`: adicionado somente o script `check:syntax` com `node --check server.js`; nenhuma dependência foi removida.
+- Commit: `c508e25289ac98ee30a32fd12dcd5c6eef629868`.
+- Arquivo novo: `.github/workflows/check-syntax.yml`, executando verificação estática de sintaxe sem senha ou conexão com banco.
+- Commit: `b7c03d4e691611f1839c678c795e60201fb961e8`.
+- Recuperação: reverter os commits indicados, caso seja necessário, mantendo o restante das alterações.
+- `package-lock.json` **permanece desatualizado**: executar `npm install` com acesso ao registro npm, revisar o diff e registrar a nova versão antes de publicar; não inventar hashes ou entradas de pacotes.
+- Testes de conexão MySQL e autenticação ainda não foram executados.
