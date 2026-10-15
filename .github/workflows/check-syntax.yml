@@ -15,6 +15,12 @@ jobs:
           node-version: '22'
       - name: Instalar dependências para validação
         run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Disponibilizar lockfile atualizado para revisão
+        uses: actions/upload-artifact@v4
+        with:
+          name: package-lock-atualizado
+          path: package-lock.json
+          retention-days: 7
       - name: Verificar sintaxe do servidor
         run: node --check server.js
       - name: Verificar dependências da autenticação
