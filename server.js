@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql2');
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const path = require('path'); // Para lidar com caminhos de arquivos estáticos
 
@@ -12,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '142536',
+    password: process.env.DB_PASS,
     database: 'troca_tudo'
 });
 
