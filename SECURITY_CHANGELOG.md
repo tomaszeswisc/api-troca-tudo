@@ -29,3 +29,13 @@
 ## Recuperação
 
 Consulte o histórico de commits em https://github.com/tomaszeswisc/api-troca-tudo/commits e examine a versão anterior de cada arquivo pelo seu commit ou blob SHA. **Não restaure senhas antigas expostas**, pois devem ser revogadas. Para recuperar uma função ou regra segura, compare o diff e restaure somente o código necessário.
+
+## Plano de correção — 15/10/2026
+
+- `server.js`: substituir somente o valor literal da propriedade `password` da conexão MySQL por `process.env.DB_PASS`, deixando o restante do arquivo e todas as rotas intactos.
+- Acrescentar `require('dotenv').config()` e dependência `dotenv` em `package.json`.
+- Criar `.env.example` fictício e proteger `.env` no `.gitignore`.
+- **Trechos a remover:** a atribuição da senha MySQL em texto simples; não registrar seu valor aqui.
+- **Recuperação:** código antigo em https://github.com/tomaszeswisc/api-troca-tudo/blob/24770b3ea0b44f080496b94443ac3d95d947603b/server.js ; não reutilizar a senha antiga.
+- **Ação local necessária:** configurar uma senha nova no MySQL e criar `.env` privado antes de executar.
+- **Até aqui:** plano registrado; execução de código ainda pendente.
