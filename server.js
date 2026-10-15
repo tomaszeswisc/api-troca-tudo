@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcryptjs');
 const mysql = require('mysql2');
 require('dotenv').config();
 const bodyParser = require('body-parser');
@@ -28,31 +29,39 @@ app.listen(PORT, () => {
 });
 
 
-// Endpoint para login no Backend
-app.post('/login', (req, res) => {
-    const { email, senha } = req.body;
+// Endpoint de login: a coluna usuarios.senha deve armazenar hash bcrypt.
+app.post('/login', async (req, res) => {
+    const { email, senha } = req.body || {};
+    if (typeof email !== 'string' || typeof senha !== 'string' || !email || !senha) {
+        return res.status(400).json({ sucesso: false, mensagem: 'Credenciais inválidas' });
+    }
+
     const query = `
-        SELECT id, nome, avatar, curtidas_totais AS curtidas, descurtidas_totais AS descurtidas
+        SELECT id, nome, avatar, curtidas_totais AS curtidas, descurtidas_totais AS descurtidas, senha
         FROM usuarios
-        WHERE email = ? AND senha = ?
+        WHERE email = ?
+        LIMIT 1
     `;
-    connection.query(query, [email, senha], (err, results) => {
+    connection.query(query, [email], async (err, results) => {
         if (err) {
             console.error('Erro ao consultar o banco de dados:', err);
             return res.status(500).json({ sucesso: false, mensagem: 'Erro no servidor' });
         }
-
-        if (results.length > 0) {
-            // Usuário encontrado
-            const usuario = results[0];
-            res.json({ sucesso: true, usuario });
-        } else {
-            // Usuário não encontrado ou senha incorreta
-            res.json({ sucesso: false, mensagem: 'Credenciais inválidas' });
+        const registro = results[0];
+        try {
+            const valida = registro && typeof registro.senha === 'string' &&
+                await bcrypt.compare(senha, registro.senha);
+            if (!valida) {
+                return res.json({ sucesso: false, mensagem: 'Credenciais inválidas' });
+            }
+            const { senha: hashNaoExibido, ...usuario } = registro;
+            return res.json({ sucesso: true, usuario });
+        } catch (erro) {
+            console.error('Erro na autenticação:', erro);
+            return res.status(500).json({ sucesso: false, mensagem: 'Erro no servidor' });
         }
     });
 });
-
 
 
 //Endpoint para produtos no Backend
