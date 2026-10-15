@@ -32,3 +32,19 @@ Substitua a senha MySQL antiga. Planeje a migração dos usuários para bcrypt a
 - **Código-fonte alterado nesta etapa:** nenhum.
 - **Histórico reescrito nesta etapa:** não.
 - **Novo documento:** `SECURITY_REMEDIATION_PLAN.md`.
+
+## Migração do login para bcrypt — 15/10/2026
+
+A rota `POST /login` agora busca usuário por e-mail e confere `usuarios.senha` com `bcrypt.compare`. Os demais campos de retorno permanecem iguais; o hash de senha não é enviado ao cliente.
+
+**Pré-requisitos locais para voltar a executar o projeto:**
+
+1. Instale as dependências com `npm install` na pasta do projeto. Isso também atualiza o `package-lock.json`, que ainda não foi regenerado nesta alteração.
+2. Configure o MySQL de estudo em um arquivo `.env` privado, copiando `.env.example` e substituindo a senha de exemplo.
+3. Confirme que `usuarios.senha` é uma coluna de texto capaz de armazenar hashes bcrypt, preferencialmente `VARCHAR(255)`.
+4. Crie usuários de teste com **novas senhas** e armazene somente os respectivos hashes bcrypt; não faça commit dos hashes junto com contas reais.
+5. Teste login válido, senha incorreta, e-mail inexistente e envio de parâmetros vazios.
+
+**Atenção:** senhas antigas em texto simples não são aceitas pela nova rota. Evite reutilizá-las e não gere hashes a partir de credenciais antigas expostas. A conversão exige redefinição de senhas dos usuários de teste ou recriação controlada dos dados.
+
+**Arquivos modificados:** `server.js`, `package.json`; sem exclusão de rotas. **Arquivos inalterados:** `package-lock.json` e esquema MySQL, pois não houve execução local. Comparar e validar localmente antes de considerar a migração concluída.
