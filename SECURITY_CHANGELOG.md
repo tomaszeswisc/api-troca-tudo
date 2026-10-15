@@ -45,3 +45,15 @@ Consulte o histórico de commits em https://github.com/tomaszeswisc/api-troca-tu
 - `.env.example` criado: https://github.com/tomaszeswisc/api-troca-tudo/commit/92ca444e77d5a749159d2224a705e1be1e58f4b5
 - `.gitignore` atualizado: https://github.com/tomaszeswisc/api-troca-tudo/commit/077bac0d4df3f3756380a0363a5905cb923700ec
 - Nenhuma função, rota ou senha original removida nesses dois commits. `server.js` continua inalterado.
+
+## 2026-10-15 — mudança aplicada ao código
+
+- `server.js`: somente a senha MySQL fixa foi substituída por `process.env.DB_PASS`, e foi adicionada a inicialização de `dotenv`. As demais rotas e a consulta de login não foram modificadas.
+- Versão anterior de `server.js`: blob `24770b3ea0b44f080496b94443ac3d95d947603b` (não reutilizar a credencial antiga).
+- Commit do código: `afa0dd8ebcfbd847d87fb6abda3e2b41cd790e7a`.
+- `package.json`: adicionada dependência `dotenv` para ler o arquivo local `.env`.
+- Versão anterior de `package.json`: blob `08a659a254556b08cd83fb2575d975dc8977aba0`.
+- Commit da dependência: `09fdb8d4a0fd2c72c40958f7c127ef961477cd79`.
+- Recuperação: obter configurações de `.env.example`, criar `.env` privado com senha nova e executar `npm install`. Não restaurar senha histórica.
+- Pendência: consulta de login ainda compara senha sem hash; revisar esquema de usuários e migrar para `bcrypt` em etapa separada.
+- Testes reais com MySQL não executados.
