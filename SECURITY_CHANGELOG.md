@@ -92,3 +92,11 @@ Consulte o histórico de commits em https://github.com/tomaszeswisc/api-troca-tu
 - A alteração não executa login ou MySQL; não armazena segredos.
 - `package-lock.json` permanece desatualizado e deve ser regenerado localmente e revisado antes de publicar.
 - Código da aplicação e rotas não são alterados; versão anterior do workflow pode ser recuperada pelo histórico Git.
+
+## 2026-10-15 — artefato de lockfile para revisão
+
+- O workflow `.github/workflows/check-syntax.yml` passa a publicar o `package-lock.json` gerado por `npm install` como artefato `package-lock-atualizado`, com retenção de 7 dias.
+- Motivo: permitir inspecionar e incorporar um lockfile válido sem inventar hashes ou dependências.
+- Nenhum código de aplicação foi excluído ou modificado. O lockfile rastreado permanece antigo até revisão e commit separado.
+- O arquivo pode ser recuperado pela área Actions quando uma execução for concluída com sucesso; ainda não foi confirmado sucesso.
+- Atenção: GitHub Actions instalado no repositório pode requerer configuração/permissão do proprietário.
