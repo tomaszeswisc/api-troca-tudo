@@ -57,3 +57,12 @@ Consulte o histórico de commits em https://github.com/tomaszeswisc/api-troca-tu
 - Recuperação: obter configurações de `.env.example`, criar `.env` privado com senha nova e executar `npm install`. Não restaurar senha histórica.
 - Pendência: consulta de login ainda compara senha sem hash; revisar esquema de usuários e migrar para `bcrypt` em etapa separada.
 - Testes reais com MySQL não executados.
+
+## 2026-10-15 — plano antes da migração do login
+
+- O login atual usa `WHERE email = ? AND senha = ?`, portanto pressupõe senha em texto simples no banco.
+- Mudança proposta: consultar pelo e-mail e comparar a senha fornecida com hash bcrypt, sem retornar o hash na resposta.
+- Contrato HTTP preservado: `POST /login`, corpo `email` e `senha`, resposta `{ sucesso, usuario }` ou `{ sucesso: false, mensagem }`.
+- **Impacto esperado:** usuários antigos com senha em texto simples não poderão entrar até que a coluna `usuarios.senha` receba hashes bcrypt. Não copiar senhas antigas para repositórios ou documentação.
+- Recuperação da versão de código atual: blob `e6c09bdc764bb06e374e160053c98678238a1b71` de `server.js` (não restaurar autenticação insegura em sistemas expostos).
+- Testes com banco real ainda não realizados.
